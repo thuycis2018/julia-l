@@ -23,14 +23,14 @@ export default function Home() {
               width={1000}
               height={760}
               className="hidden rounded-lg md:block z-10"
-              alt="desktop version"
+              alt="bg desktop version"
             />
             <Image
               src="/image-mobile.jpeg"
               width={560}
               height={620}
               className="block rounded-md md:hidden"
-              alt="mobile version"
+              alt="background mobile version"
             />
           </div>
         </div>
