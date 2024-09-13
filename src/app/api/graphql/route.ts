@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const { operationName } = body;
     let uri ='';
     let token = '';
-    console.log('HERE');
+
     if(operationName == 'GetTestimonials'){
       uri = `${process.env.URI_GRAPHQL_DATOCMS}`;
       token = `${process.env.DATOCMS_API_KEY}`;
@@ -16,7 +16,6 @@ export async function POST(request: NextRequest) {
       uri = `${process.env.URI_GRAPHQL_AWS_GITHUB}`;
     }
 
-    console.log(JSON.stringify(body));
     const response = await fetch(uri, {
       method: 'POST',
       headers: {
