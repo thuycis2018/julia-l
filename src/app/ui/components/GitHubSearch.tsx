@@ -4,10 +4,27 @@ import { SEARCH_REPOSITORIES } from '../../api/queries/queries';
 import {SearchProps, SearchResponse} from '../../lib/definition';
 
 const GitHubSearch: React.FC<SearchProps> = ({ query, first }) => {
-  const { loading, error, data } = useQuery<SearchResponse>(SEARCH_REPOSITORIES, {
+//   const { loading, error, data } = useQuery<SearchResponse>(SEARCH_REPOSITORIES, {
+//     variables: { query, first },
+//     context: {
+//         uri: process.env.NEXT_PUBLIC_URI_GRAPHQL_AWS_GITHUB,
+//     },
+//   });
+
+  const { loading, error, data } = useQuery(SEARCH_REPOSITORIES, {
     variables: { query, first },
     context: {
-        uri: process.env.NEXT_PUBLIC_URI_GRAPHQL_AWS_GITHUB,
+      fetch:  async () => {
+        return await fetch('/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: SEARCH_REPOSITORIES.loc?.source.body,
+          }),
+        }).then(response => response.json());
+      },
     },
   });
 
@@ -17,7 +34,7 @@ const GitHubSearch: React.FC<SearchProps> = ({ query, first }) => {
   return (
         <div>
             <ul className="space-y-4">
-                {data?.search.edges.map((edge, index) => (
+                {data?.search.edges.map((edge: { node: { url: string | undefined; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; owner: { login: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }; description: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; stargazerCount: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; forkCount: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }; }, index: React.Key | null | undefined) => (
                 <li key={index} className="items-start p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm"
                 >
                     <h2 className="text-xl font-semibold mb-1">

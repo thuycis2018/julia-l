@@ -2,17 +2,13 @@ import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/clien
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_URI_GRAPHQL_DATOCMS,
+  uri: '/api/graphql',
 });
 
-
 const authLink = setContext((_, { headers }) => {
-  const token = process.env.DATOCMS_API_KEY;
-
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });

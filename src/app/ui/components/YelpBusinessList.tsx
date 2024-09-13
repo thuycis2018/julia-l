@@ -11,10 +11,20 @@ interface Props {
 }
 
 const YelpBusinessList: React.FC<Props> = ({ location, term }) => {
-  const { loading, error, data } = useQuery<YelpResponse>(GET_BUSINESSES, {
+  const { loading, error, data } = useQuery(GET_BUSINESSES, {
     variables: { location, term },
     context: {
-      uri: process.env.NEXT_PUBLIC_URI_GRAPHQL_AWS_YELP,
+      fetch:  async () => {
+        return await fetch('/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: GET_BUSINESSES.loc?.source.body,
+          }),
+        }).then(response => response.json());
+      },
     },
   });
 
@@ -27,13 +37,13 @@ const YelpBusinessList: React.FC<Props> = ({ location, term }) => {
       
       <h1 className="text-center font-bold text-2xl p-4">Coffee Shops in {location}</h1>
       <ul className="space-y-4">
-        {data?.search.business.map((business, index) => (
+        {data?.search.business.map((business: { name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; rating: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; review_count: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; location: { address1: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; city: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }; categories: any[]; }, index: React.Key | null | undefined) => (
           <li key={index} className="items-start p-4 bg-gray-50 border border-gray-300 rounded-lg shadow-sm">
             <h2 className="text-xl font-semibold mb-1">{business.name}</h2>
             <p className="text-gray-700">Rating: {business.rating} stars</p>
             <p className="text-gray-700">{business.review_count} reviews</p>
             <p className="text-gray-700">Address: {business.location.address1}, {business.location.city}</p>
-            <p className="text-gray-700">Category: {business.categories.map(cat => cat.title).join(', ')}</p>
+            <p className="text-gray-700">Category: {business.categories.map((cat: { title: any; }) => cat.title).join(', ')}</p>
           </li>
         ))}
       </ul>

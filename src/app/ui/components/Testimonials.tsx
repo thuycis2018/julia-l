@@ -3,14 +3,24 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaptopCode, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { useQuery } from '@apollo/client';
+import { useQuery} from '@apollo/client';
 import { GET_TESTIMONIALS } from '../../api/queries/queries';
-import { TestimonialList } from '../../lib/definition';
 
 const Testimonials: React.FC = () => {
-  const { loading, error, data } = useQuery<TestimonialList>(GET_TESTIMONIALS,{
+  const { loading, error, data } = useQuery(GET_TESTIMONIALS, {
     context: {
-      uri: process.env.NEXT_PUBLIC_URI_GRAPHQL_DATOCMS,
+      fetch:  async () => {
+        return await fetch('/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: GET_TESTIMONIALS.loc?.source.body,
+            variables: {},
+          }),
+        }).then(response => response.json());
+      },
     },
   });
 
@@ -25,7 +35,7 @@ const Testimonials: React.FC = () => {
       </div>
 
       <ul className="space-y-4">
-        {data?.allTestimonials.map((record, index) => (
+        {data?.allTestimonials.map((record: { content: any; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; title: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
           <div
             key={index}
             className="bg-gray-100 p-6 shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-200">
