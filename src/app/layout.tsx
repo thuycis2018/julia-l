@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './main.css';
+import Providers from './providers';
+import Header from '@/app/ui/components/Header';
+import Footer from '@/app/ui/components/Footer';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,21 +17,29 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "My Application",
-  description: "My Notes",
+  title: "JL",
+  description: "Welcome to my site",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <head>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
       </body>
     </html>
   );
