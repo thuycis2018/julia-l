@@ -7,7 +7,7 @@ const httpLink = new HttpLink({
 
 
 const authLink = setContext((_, { headers }) => {
-  const token = process.env.NEXT_PUBLIC_DATOCMS_API_KEY;
+  const token = process.env.DATOCMS_API_KEY;
 
   return {
     headers: {
