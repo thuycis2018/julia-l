@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaptopCode, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useQuery} from '@apollo/client';
 import { GET_TESTIMONIALS } from '../../api/queries/queries';
+import { PostsSkeleton } from '../../ui/components/Skeletons';
 
 const Testimonials: React.FC = () => {
   const { loading, error, data } = useQuery(GET_TESTIMONIALS, {
@@ -24,7 +25,7 @@ const Testimonials: React.FC = () => {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <PostsSkeleton />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (

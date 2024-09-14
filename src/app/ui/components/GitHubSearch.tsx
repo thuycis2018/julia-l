@@ -1,15 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { SEARCH_REPOSITORIES } from '../../api/queries/queries';
-import {SearchProps, SearchResponse} from '../../lib/definition';
+import {SearchProps} from '../../lib/definition';
+import { PostsSkeleton } from '../../ui/components/Skeletons';
 
 const GitHubSearch: React.FC<SearchProps> = ({ query, first }) => {
-//   const { loading, error, data } = useQuery<SearchResponse>(SEARCH_REPOSITORIES, {
-//     variables: { query, first },
-//     context: {
-//         uri: process.env.NEXT_PUBLIC_URI_GRAPHQL_AWS_GITHUB,
-//     },
-//   });
 
   const { loading, error, data } = useQuery(SEARCH_REPOSITORIES, {
     variables: { query, first },
@@ -28,7 +23,7 @@ const GitHubSearch: React.FC<SearchProps> = ({ query, first }) => {
     },
   });
 
-  if (loading && query) return <p>Loading...</p>;
+  if (loading && query) return <PostsSkeleton />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (

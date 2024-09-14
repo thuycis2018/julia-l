@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 import GitHubSection from "../../app/ui/components/GitHubSection";
 import YelpBusinessList from "../../app/ui/components/YelpBusinessList";
 import PlaygroundSection from "../../app/ui/components/PlaygroundSection";
-import { StockSymbol } from '../lib/definition';
+// import { StockSymbol } from '../lib/definition';
 
 const PlayGroundPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const symbols: StockSymbol[] = ['GOOG', 'AMZN']; 
-  const chartType = 'scatter';
+  // const symbols: StockSymbol[] = ['GOOG', 'AMZN']; 
+  // const chartType = 'scatter';
   const tabs = [
     { label: 'Web Stacks', content: <PlaygroundSection /> }, 
     { label: 'Yelp Businesses', content: <YelpBusinessList location="San Diego" term="coffee"/> },

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 import { useQuery} from '@apollo/client';
 import { GET_BUSINESSES } from '../../api/queries/queries';
-import { YelpResponse } from '../../lib/definition';
+import { PostsSkeleton } from '../../ui/components/Skeletons';
 
 interface Props {
   location: string;
@@ -28,7 +28,7 @@ const YelpBusinessList: React.FC<Props> = ({ location, term }) => {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <PostsSkeleton />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
