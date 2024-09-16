@@ -29,8 +29,8 @@ const Testimonials: React.FC = () => {
 
   return (
     <div className="m-5">
-      <h1 className="text-3xl text-black font-bold mb-8 text-center p-4">Testimonials</h1>
-      <div className="mb-5 text-black">
+      <h1 className="text-3xl font-bold mb-8 text-center p-4">Testimonials</h1>
+      <div className="mb-5">
       <FaLaptopCode className="inline text-xl mr-2 mb-2" /> This feature uses React frontend (TypeScript and Apollo Client) pulling data from DatoCMS using GraphQL query.
       </div>
 
