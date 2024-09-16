@@ -2,13 +2,12 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest', // For TypeScript files
-    '^.+\\.(js|jsx|mjs|cjs)$': 'babel-jest',  // Use babel-jest for JS/JSX
+    "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "tsconfig.test.json" }],
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  moduleNameMapper: {
-    '\\.(css|scss)$': 'identity-obj-proxy',  // Mock CSS imports
-  },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+  },
 };
-
