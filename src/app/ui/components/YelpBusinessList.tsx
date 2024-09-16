@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { FaLaptopCode, FaThumbsUp } from 'react-icons/fa';
 import { useQuery} from '@apollo/client';
 import { GET_BUSINESSES } from '../../api/queries/queries';
 import { PostsSkeleton } from '../../ui/components/Skeletons';
@@ -33,7 +32,7 @@ const YelpBusinessList: React.FC<Props> = ({ location, term }) => {
 
   return (
     <div>
-      <div className="py-5"><FontAwesomeIcon icon={faLaptopCode} className="mr-2" /> This feature uses React frontend (TypeScript and Apollo) sending GraphQL query to AWS API Gateway triggering AWS Lambda (Python) to call Yelp GraphQL endpoint passing API Token and return search result. API Token can be stored in AWS Secret Manager and then use AWS SDK to pull it in Lambda function.</div>
+      <div className="py-5"><FaLaptopCode className="inline text-xl mr-2 mb-2" /> This feature uses React frontend (TypeScript and Apollo) sending GraphQL query to AWS API Gateway triggering AWS Lambda (Python) to call Yelp GraphQL endpoint passing API Token and return search result. API Token can be stored in AWS Secret Manager and then use AWS SDK to pull it in Lambda function.</div>
       
       <h1 className="text-center font-bold text-2xl p-4">Coffee Shops in {location}</h1>
       <ul className="space-y-4">

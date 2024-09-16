@@ -4,6 +4,7 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faComments, faCode, faBars, faFolder } from '@fortawesome/free-solid-svg-icons';
+import { FaHome, FaComments, FaCode, FaBars, FaFolder,} from 'react-icons/fa';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,21 +27,21 @@ export default function Header() {
           </Link>
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-white focus:outline-none">
-              <FontAwesomeIcon icon={faBars} size="lg" />
+            <FaBars className="inline text-xl" />
             </button>
           </div>
           <div className={`flex-col md:flex md:flex-row md:items-center ${isOpen ? 'flex' : 'hidden'}`}>
             <Link href="/" className={`mt-4 md:mt-0 md:ml-10 ${isActive('/')}`}>
-              <FontAwesomeIcon icon={faHouse} className="mr-2 fa-sm" /> Home
+              <FaHome className="inline text-lg mb-2" /> Home
             </Link>
             <Link href="/case-studies" className={`mt-4 md:mt-0 md:ml-10 ${isActive('case-studies')}`}>
-              <FontAwesomeIcon icon={faFolder} className="mr-2 fa-sm" /> Case Study
+              <FaFolder className="inline text-lg mb-2" /> Case Study
             </Link>
             <Link href="/testimonials" className={`mt-4 md:mt-0 md:ml-10 ${isActive('testimonials')}`}>
-              <FontAwesomeIcon icon={faComments} className="mr-2 fa-sm" /> Testimonials
+              <FaComments className="inline text-lg mb-2" /> Testimonials
             </Link>
             <Link href="/playground" className={`mt-4 md:mt-0 md:ml-10 ${isActive('playground')}`}>
-              <FontAwesomeIcon icon={faCode} className="mr-2 fa-sm" /> Playground
+              <FaCode className="inline text-lg mb-2" /> Playground
             </Link>
           </div>
         </div>

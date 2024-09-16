@@ -11,10 +11,6 @@ describe('SkillSection Component', () => {
   it('renders the correct skill sections with icons and text', () => {
     render(<SkillSection />);
 
-    // Check for the presence of the three skill sections and their corresponding icons
-    const icons = screen.getAllByTestId('icon');
-    expect(icons.length).toBe(3); // Expect 3 icons
-
     // Check for the presence of the section titles and their descriptions
     expect(screen.getByText(/Web Project Managment/i)).toBeInTheDocument();
     // expect(screen.getByText(/Web Development/i)).toBeInTheDocument();

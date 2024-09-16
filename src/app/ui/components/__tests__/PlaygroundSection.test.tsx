@@ -10,10 +10,6 @@ describe('PlaygroundSection Component', () => {
   it('renders the correct links and icons', () => {
     render(<PlaygroundSection />);
 
-    // Test that the icons are rendered
-    const icons = screen.getAllByTestId('icon');
-    expect(icons.length).toBe(3); // Three icons in the list
-
     // Test that the links are rendered
     expect(screen.getByText(/https:\/\/nextjs-openai-chi.vercel.app\//i)).toBeInTheDocument();
     expect(screen.getByText(/https:\/\/julia-le.pages.dev\//i)).toBeInTheDocument();

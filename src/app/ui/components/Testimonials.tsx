@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLaptopCode, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useQuery} from '@apollo/client';
 import { GET_TESTIMONIALS } from '../../api/queries/queries';
 import { PostsSkeleton } from '../../ui/components/Skeletons';
+import { FaLaptopCode, FaThumbsUp } from 'react-icons/fa';
 
 const Testimonials: React.FC = () => {
   const { loading, error, data } = useQuery(GET_TESTIMONIALS, {
@@ -32,7 +31,7 @@ const Testimonials: React.FC = () => {
     <div className="m-5">
       <h1 className="text-3xl font-bold mb-8 text-center p-4">Testimonials</h1>
       <div className="mb-5">
-        <FontAwesomeIcon icon={faLaptopCode} className="mr-2" /> This feature uses React frontend (TypeScript and Apollo Client) pulling data from DatoCMS using GraphQL query.
+      <FaLaptopCode className="inline text-xl mr-2 mb-2" /> This feature uses React frontend (TypeScript and Apollo Client) pulling data from DatoCMS using GraphQL query.
       </div>
 
       <ul className="space-y-4">
@@ -45,7 +44,7 @@ const Testimonials: React.FC = () => {
             </p>
             <div className="flex items-center mb-4">
               <p className="text-xl font-bold mt-5">
-                <FontAwesomeIcon icon={faThumbsUp} className="mr-2" /> {record.name} , {record.title}
+              <FaThumbsUp className="inline text-md mr-2 mb-2" />  {record.name} , {record.title}
               </p>
             </div>
           </div>
