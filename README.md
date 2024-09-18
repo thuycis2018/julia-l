@@ -20,6 +20,19 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Using Docker
+
+Build the Docker image
+```sh
+docker build -t my-nextjs-app .
+```
+
+
+Run the Docker container
+```sh
+docker run --env-file .env -p 3000:3000 my-nextjs-app
+```
+
 ## Set Up Tests
 
 For Nextjs, need to keep "jsx": "preserve" in tsconfig.json. So use another tsconfig.test.json for tests to use "jsx": "react-tsx". Need to point to tsconfig.test.json in jest.config.js.
